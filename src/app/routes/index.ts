@@ -7,6 +7,7 @@ import { eventRoute } from "../modules/event/event.route";
 import { galleryRoute } from "../modules/gallery/gallery.route";
 import { memberRoute } from "../modules/members/member.route";
 import { likeRoute } from "../modules/likes/likes.route";
+import { commentRouter } from "../modules/comments/comments.route";
 const router = express.Router();
 
 const moduleRouter = [
@@ -41,6 +42,10 @@ const moduleRouter = [
   {
     path: "/like",
     route: likeRoute,
+  },
+  {
+    path: "/comment",
+    route: commentRouter,
   },
 ];
 
