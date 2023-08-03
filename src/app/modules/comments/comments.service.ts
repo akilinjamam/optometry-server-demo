@@ -38,9 +38,16 @@ const deleteCommentService = async (id: string): Promise<IComment | null> => {
   return result;
 };
 
+const bulkdeleteCommentService = async (ids: string[]) => {
+  const result = await Comment.deleteMany({ _id: ids });
+
+  return result;
+};
+
 export const commentService = {
   createCommentService,
   getCommentService,
   updateCommentService,
   deleteCommentService,
+  bulkdeleteCommentService,
 };

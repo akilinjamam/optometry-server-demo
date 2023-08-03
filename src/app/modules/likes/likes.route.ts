@@ -6,6 +6,8 @@ const router = express.Router();
 router.route("/create-like").post(likeController.createLikeController);
 router.route("/").get(likeController.getLikeController);
 
+router.route("/bulk-delete").post(likeController.bulkdeleteLikeController);
+
 router
   .route("/:id")
   .patch(likeController.updateLikeController)

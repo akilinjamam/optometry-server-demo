@@ -9,6 +9,10 @@ router
 router.route("/").get(commentsController.getCommentsController);
 
 router
+  .route("/bulk-delete")
+  .post(commentsController.bulkdeleteCommentsController);
+
+router
   .route("/:id")
   .patch(commentsController.updateCommentsController)
   .delete(commentsController.deleteCommentsController);

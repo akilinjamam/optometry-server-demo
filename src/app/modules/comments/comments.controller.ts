@@ -64,9 +64,24 @@ const deleteCommentsController = catchAsync(
   }
 );
 
+const bulkdeleteCommentsController = catchAsync(
+  async (req: Request, res: Response) => {
+    const { idsComment } = req.body;
+    const result = await commentService.bulkdeleteCommentService(idsComment);
+    console.log(idsComment);
+    sendResponse(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: "Comment section is deleted successfully",
+      data: result,
+    });
+  }
+);
+
 export const commentsController = {
   createCommentsController,
   getCommentsController,
   updateCommentsController,
   deleteCommentsController,
+  bulkdeleteCommentsController,
 };

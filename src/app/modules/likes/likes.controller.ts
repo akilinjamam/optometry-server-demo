@@ -53,9 +53,25 @@ const deleteLikeController = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const bulkdeleteLikeController = catchAsync(
+  async (req: Request, res: Response) => {
+    const { idsLike } = req.body;
+    const result = await likeService.bulkdeleteLikeService(idsLike);
+    console.log(idsLike);
+
+    sendResponse(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: "like section is deleted successfully",
+      data: result,
+    });
+  }
+);
+
 export const likeController = {
   createLikeController,
   getLikeController,
   updateLikeController,
   deleteLikeController,
+  bulkdeleteLikeController,
 };

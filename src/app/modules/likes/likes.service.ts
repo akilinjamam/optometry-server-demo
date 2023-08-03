@@ -37,9 +37,16 @@ const deleteLikeService = async (id: string): Promise<ILike | null> => {
   return result;
 };
 
+const bulkdeleteLikeService = async (id: string[]) => {
+  const result = await Like.deleteMany({ _id: id });
+
+  return result;
+};
+
 export const likeService = {
   createLikeService,
   getLikeService,
   updateLikeService,
   deleteLikeService,
+  bulkdeleteLikeService,
 };
