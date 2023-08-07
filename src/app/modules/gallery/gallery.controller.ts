@@ -20,7 +20,9 @@ const createGalleryController = catchAsync(
 );
 
 const getGalleryController = catchAsync(async (req: Request, res: Response) => {
-  const result = await galleryService.getGalleryService();
+  const searchTerm = req.query;
+
+  const result = await galleryService.getGalleryService(searchTerm);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,

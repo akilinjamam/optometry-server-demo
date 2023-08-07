@@ -20,7 +20,8 @@ const createEventController = catchAsync(
 );
 
 const getEventController = catchAsync(async (req: Request, res: Response) => {
-  const result = await eventService.getEventService();
+  const searchTerm = req.query;
+  const result = await eventService.getEventService(searchTerm);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,

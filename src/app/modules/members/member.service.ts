@@ -1,6 +1,8 @@
 import configuration from "../../../configuration";
 import { IGenericResponse } from "../../interface/common";
+import { ISearchTerm } from "../../interface/searchTerm";
 import { generateMemberId } from "./generateMemberId";
+import { memberSearchableField } from "./member.constant";
 import { IMember } from "./member.interface";
 import { Member } from "./member.model";
 
@@ -20,8 +22,26 @@ const createMemberService = async (payload: IMember): Promise<IMember> => {
   return result;
 };
 
-const getMemberService = async (): Promise<IGenericResponse<IMember[]>> => {
-  const result = await Member.find({});
+const getMemberService = async (
+  payload: ISearchTerm
+): Promise<IGenericResponse<IMember[]>> => {
+  const { searchTerm } = payload;
+  const condition = [];
+
+  if (searchTerm) {
+    condition.push({
+      $or: memberSearchableField.map((fields) => ({
+        [fields]: {
+          $regex: searchTerm,
+          $options: "i",
+        },
+      })),
+    });
+  }
+
+  const whereCondition = condition.length > 0 ? { $and: condition } : {};
+
+  const result = await Member.find(whereCondition);
 
   const total = await Member.countDocuments();
 

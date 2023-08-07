@@ -19,7 +19,9 @@ const createBlogController = catchAsync(async (req: Request, res: Response) => {
 });
 
 const getBlogController = catchAsync(async (req: Request, res: Response) => {
-  const result = await blogService.getBlogService();
+  const searchTerm = req.query;
+
+  const result = await blogService.getBlogService(searchTerm);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,

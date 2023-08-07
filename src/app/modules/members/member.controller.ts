@@ -20,7 +20,8 @@ const createMemberController = catchAsync(
 );
 
 const getMemberController = catchAsync(async (req: Request, res: Response) => {
-  const result = await memberService.getMemberService();
+  const searchTerm = req.query;
+  const result = await memberService.getMemberService(searchTerm);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,

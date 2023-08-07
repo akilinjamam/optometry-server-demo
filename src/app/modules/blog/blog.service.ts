@@ -1,4 +1,6 @@
 import { IGenericResponse } from "../../interface/common";
+import { ISearchTerm } from "../../interface/searchTerm";
+import { blogSearchableField } from "./blog.constant";
 import { IBlog } from "./blog.interface";
 import { Blog } from "./blog.model";
 
@@ -8,8 +10,27 @@ const createBlogService = async (payload: IBlog): Promise<IBlog> => {
   return result;
 };
 
-const getBlogService = async (): Promise<IGenericResponse<IBlog[]>> => {
-  const result = await Blog.find({});
+const getBlogService = async (
+  payload: ISearchTerm
+): Promise<IGenericResponse<IBlog[]>> => {
+  const { searchTerm } = payload;
+
+  const condition = [];
+
+  if (searchTerm) {
+    condition.push({
+      $or: blogSearchableField.map((fields) => ({
+        [fields]: {
+          $regex: searchTerm,
+          $options: "i",
+        },
+      })),
+    });
+  }
+
+  const whereCondition = condition.length > 0 ? { $and: condition } : {};
+
+  const result = await Blog.find(whereCondition);
 
   const total = await Blog.countDocuments();
 

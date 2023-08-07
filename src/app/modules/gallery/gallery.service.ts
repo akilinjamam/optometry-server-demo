@@ -1,4 +1,6 @@
 import { IGenericResponse } from "../../interface/common";
+import { ISearchTerm } from "../../interface/searchTerm";
+import { gallerySearchableField } from "./gallery.constant";
 import { IGallery } from "./gallery.interface";
 import { Gallery } from "./gallery.model";
 
@@ -7,8 +9,26 @@ const createGalleryService = async (payload: IGallery): Promise<IGallery> => {
   return result;
 };
 
-const getGalleryService = async (): Promise<IGenericResponse<IGallery[]>> => {
-  const result = await Gallery.find({});
+const getGalleryService = async (
+  payload: ISearchTerm
+): Promise<IGenericResponse<IGallery[]>> => {
+  const { searchTerm } = payload;
+  const condition = [];
+
+  if (searchTerm) {
+    condition.push({
+      $or: gallerySearchableField.map((fields) => ({
+        [fields]: {
+          $regex: searchTerm,
+          $options: "i",
+        },
+      })),
+    });
+  }
+
+  const whereCondition = condition.length > 0 ? { $and: condition } : {};
+
+  const result = await Gallery.find(whereCondition);
 
   const total = await Gallery.countDocuments();
 

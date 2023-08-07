@@ -1,4 +1,6 @@
 import { IGenericResponse } from "../../interface/common";
+import { ISearchTerm } from "../../interface/searchTerm";
+import { eventSearchableField } from "./event.constant";
 import { IEvent } from "./event.interface";
 import { Event } from "./event.model";
 
@@ -7,8 +9,26 @@ const createEventService = async (payload: IEvent): Promise<IEvent> => {
   return result;
 };
 
-const getEventService = async (): Promise<IGenericResponse<IEvent[]>> => {
-  const result = await Event.find({});
+const getEventService = async (
+  payload: ISearchTerm
+): Promise<IGenericResponse<IEvent[]>> => {
+  const { searchTerm } = payload;
+  const condition = [];
+
+  if (searchTerm) {
+    condition.push({
+      $or: eventSearchableField.map((fields) => ({
+        [fields]: {
+          $regex: searchTerm,
+          $options: "i",
+        },
+      })),
+    });
+  }
+
+  const whereCondition = condition.length > 0 ? { $and: condition } : {};
+
+  const result = await Event.find(whereCondition);
 
   const total = await Event.countDocuments();
 
