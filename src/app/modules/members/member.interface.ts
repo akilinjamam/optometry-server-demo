@@ -13,6 +13,7 @@ export type IMember = {
   expiration: string;
   isAdmin: boolean;
   isSignOut: boolean;
+  qr_code: string;
 };
 
 export type MemberModel = Model<IMember, Record<string, unknown>>;

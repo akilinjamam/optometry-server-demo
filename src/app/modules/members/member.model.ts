@@ -56,6 +56,9 @@ const memberSchema = new Schema<IMember, MemberModel>(
       default: false,
       required: true,
     },
+    qr_code: {
+      type: String,
+    },
   },
   {
     timestamps: true,
