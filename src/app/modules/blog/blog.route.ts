@@ -1,10 +1,11 @@
 import express from "express";
 import { blogController } from "./blog.cotroller";
+import { verifyJwt } from "../../../shared/verifyJwt";
 
 const router = express.Router();
 
 router.route("/create-blog").post(blogController.createBlogController);
-router.route("/").get(blogController.getBlogController);
+router.route("/").get(verifyJwt, blogController.getBlogController);
 
 router
   .route("/:id")

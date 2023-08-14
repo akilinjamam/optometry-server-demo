@@ -8,6 +8,8 @@ import { galleryRoute } from "../modules/gallery/gallery.route";
 import { memberRoute } from "../modules/members/member.route";
 import { likeRoute } from "../modules/likes/likes.route";
 import { commentRouter } from "../modules/comments/comments.route";
+import { jwtRouter } from "../../shared/varifyJwt.route";
+import { paymentRoute } from "../modules/payment/payment.route";
 const router = express.Router();
 
 const moduleRouter = [
@@ -46,6 +48,14 @@ const moduleRouter = [
   {
     path: "/comment",
     route: commentRouter,
+  },
+  {
+    path: "/jwt",
+    route: jwtRouter,
+  },
+  {
+    path: "/payment",
+    route: paymentRoute,
   },
 ];
 

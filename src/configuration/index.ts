@@ -11,4 +11,5 @@ export default {
   store_password: process.env.STORE_PASSWORD,
   server_side_link: process.env.SERVER_SIDE_LINK,
   client_side_link: process.env.CLIENT_SIDE_LINK,
+  secret_key: process.env.ACCESS_TOKEN_SECRET,
 };
