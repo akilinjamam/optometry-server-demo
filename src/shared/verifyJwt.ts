@@ -4,7 +4,7 @@ import configuration from "../configuration/index";
 
 export const verifyJwt = (req: any, res: Response, next: any) => {
   const authorization = req.headers.authorization;
-  console.log("from jwt :", authorization);
+
   const splitedHeadersToken: any = authorization?.split(" ")[1];
 
   if (!authorization) {

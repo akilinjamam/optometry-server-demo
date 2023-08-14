@@ -105,11 +105,13 @@ router.route("/fail").post(async (req, res) => {
   }
 });
 
-router.route("/").get(verifyJwt, async (req, res) => {
+router.route("/").get(verifyJwt, async (req: any, res) => {
   const { cus_email } = req.query;
-
-  if (cus_email) {
-    const result = await Payment.find({ cus_email });
+  const decoded = req.decoded;
+  // console.log(decoded);
+  // console.log(cus_email);
+  if (!cus_email) {
+    const result = await Payment.find({});
 
     res.status(200).json({
       success: true,
@@ -117,7 +119,7 @@ router.route("/").get(verifyJwt, async (req, res) => {
       result: result,
     });
   } else {
-    const result = await Payment.find({});
+    const result = await Payment.find({ cus_email });
 
     res.status(200).json({
       success: true,

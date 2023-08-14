@@ -5,11 +5,10 @@ const router = express.Router();
 
 router.route("/create-jwt").post((req, res) => {
   const user = req.body;
-  console.log(user);
+
   const token = jwt.sign(user, configuration.secret_key as string, {
     expiresIn: "1h",
   });
-  console.log(token);
 
   res.send({ token });
 });

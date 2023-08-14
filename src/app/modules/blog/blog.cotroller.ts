@@ -20,9 +20,6 @@ const createBlogController = catchAsync(async (req: Request, res: Response) => {
 
 const getBlogController = catchAsync(async (req: any, res: Response) => {
   const searchTerm = req.query;
-  console.log(req.headers.authorization);
-  const decoded = req.decoded;
-  console.log(decoded);
 
   const result = await blogService.getBlogService(searchTerm);
 
