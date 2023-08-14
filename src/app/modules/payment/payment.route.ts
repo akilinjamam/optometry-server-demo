@@ -2,6 +2,7 @@ import express from "express";
 import configuration from "../../../configuration/index";
 import { v4 as uuidv4 } from "uuid";
 import { Payment } from "./payment.model";
+import { verifyJwt } from "../../../shared/verifyJwt";
 const SSLCommerzPayment = require("sslcommerz-lts");
 
 const router = express.Router();
@@ -104,10 +105,43 @@ router.route("/fail").post(async (req, res) => {
   }
 });
 
-router.route("/:id").get(async (req, res) => {
-  const { id } = req.params;
-  const result = await Payment.findOne({ tran_id: id });
-  res.send(result);
+router.route("/").get(verifyJwt, async (req, res) => {
+  const { cus_email } = req.query;
+
+  if (cus_email) {
+    const result = await Payment.find({ cus_email });
+
+    res.status(200).json({
+      success: true,
+      message: "payment found successfully by query",
+      result: result,
+    });
+  } else {
+    const result = await Payment.find({});
+
+    res.status(200).json({
+      success: true,
+      message: "payment found successfully",
+      result: result,
+    });
+  }
 });
+
+router.route("/:id").get(verifyJwt, async (req, res) => {
+  const { id } = req.params;
+  console.log(id);
+  const result = await Payment.findOne({ _id: id });
+  res.status(200).json({
+    suceess: true,
+    message: "id found successfully",
+    result: result,
+  });
+});
+
+// router.route("/:id").get(async (req, res) => {
+//   const { id } = req.params;
+//   const result = await Payment.findOne({ tran_id: id });
+//   res.send(result);
+// });
 
 export const paymentRoute = router;
