@@ -20,6 +20,10 @@ const aboutSchema = new Schema<IAbout, AboutModel>(
       type: String,
       required: true,
     },
+    imgBig: {
+      type: String,
+      required: true,
+    },
   },
   {
     timestamps: true,

@@ -5,6 +5,7 @@ export type IAbout = {
   email: string;
   description: string;
   img: string;
+  imgBig: string;
 };
 
 export type AboutModel = Model<IAbout, Record<string, unknown>>;
