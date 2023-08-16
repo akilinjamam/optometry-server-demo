@@ -10,6 +10,7 @@ import { likeRoute } from "../modules/likes/likes.route";
 import { commentRouter } from "../modules/comments/comments.route";
 import { jwtRouter } from "../../shared/varifyJwt.route";
 import { paymentRoute } from "../modules/payment/payment.route";
+import { workRouter } from "../modules/works/works.router";
 const router = express.Router();
 
 const moduleRouter = [
@@ -56,6 +57,10 @@ const moduleRouter = [
   {
     path: "/payment",
     route: paymentRoute,
+  },
+  {
+    path: "/work",
+    route: workRouter,
   },
 ];
 
