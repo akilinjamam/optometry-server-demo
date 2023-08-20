@@ -68,8 +68,6 @@ router.route("/create-payment").post(async (req, res) => {
     ship_country: "Bangladesh",
   };
 
-  // console.log(data);
-
   const sslcz = new SSLCommerzPayment(store_id, store_passwd, is_live);
   sslcz.init(data).then((apiResponse: { GatewayPageURL: any }) => {
     // Redirect the user to payment gateway
