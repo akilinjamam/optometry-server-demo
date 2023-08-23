@@ -11,6 +11,7 @@ import { commentRouter } from "../modules/comments/comments.route";
 import { jwtRouter } from "../../shared/varifyJwt.route";
 import { paymentRoute } from "../modules/payment/payment.route";
 import { workRouter } from "../modules/works/works.router";
+import { heroRouter } from "../modules/hero/hero.route";
 const router = express.Router();
 
 const moduleRouter = [
@@ -61,6 +62,10 @@ const moduleRouter = [
   {
     path: "/work",
     route: workRouter,
+  },
+  {
+    path: "/hero",
+    route: heroRouter,
   },
 ];
 
