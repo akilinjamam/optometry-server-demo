@@ -3,7 +3,12 @@ import { HeroModel, IHero } from "./hero.interface";
 
 const heroSchema = new Schema<IHero, HeroModel>(
   {
-    title: {
+    titleOne: {
+      type: String,
+      required: true,
+      maxlength: 80,
+    },
+    titleTwo: {
       type: String,
       required: true,
       maxlength: 80,

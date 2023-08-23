@@ -1,7 +1,8 @@
 import { Model } from "mongoose";
 
 export type IHero = {
-  title: string;
+  titleOne: string;
+  titleTwo: string;
   email: string;
   imgLink: string;
 };
