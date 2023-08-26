@@ -12,6 +12,7 @@ import { jwtRouter } from "../../shared/varifyJwt.route";
 import { paymentRoute } from "../modules/payment/payment.route";
 import { workRouter } from "../modules/works/works.router";
 import { heroRouter } from "../modules/hero/hero.route";
+import { publicationRouter } from "../modules/publication/publication.route";
 const router = express.Router();
 
 const moduleRouter = [
@@ -66,6 +67,10 @@ const moduleRouter = [
   {
     path: "/hero",
     route: heroRouter,
+  },
+  {
+    path: "/publication",
+    route: publicationRouter,
   },
 ];
 

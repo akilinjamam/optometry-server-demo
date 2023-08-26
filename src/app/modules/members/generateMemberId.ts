@@ -1,4 +1,3 @@
-import { IMember } from "./member.interface";
 import { Member } from "./member.model";
 
 export const findLastMemberId = async (): Promise<string | undefined> => {
@@ -8,15 +7,13 @@ export const findLastMemberId = async (): Promise<string | undefined> => {
     : undefined;
 };
 
-export const generateMemberId = async (member: IMember) => {
+export const generateMemberId = async () => {
   const currentId =
     (await findLastMemberId()) || (0).toString().padStart(5, "0");
   const increamentedId = parseInt(currentId) + 1;
   let increamentedIdString = increamentedId.toString().padStart(5, "0");
 
-  increamentedIdString = `M-${member.name
-    .toUpperCase()
-    .slice(0, 2)}${increamentedIdString}`;
+  increamentedIdString = `M-${increamentedIdString}`;
 
   return increamentedIdString;
 };

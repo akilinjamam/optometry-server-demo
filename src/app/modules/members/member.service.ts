@@ -12,11 +12,9 @@ const createMemberService = async (payload: IMember): Promise<IMember> => {
   }
 
   if (!payload.member_id) {
-    const id = await generateMemberId(payload);
+    const id = await generateMemberId();
     payload.member_id = id;
   }
-
-  console.log(payload.member_id);
 
   const result = await Member.create(payload);
   return result;
