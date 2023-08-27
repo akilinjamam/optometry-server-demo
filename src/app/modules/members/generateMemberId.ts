@@ -13,7 +13,7 @@ export const generateMemberId = async () => {
   const increamentedId = parseInt(currentId) + 1;
   let increamentedIdString = increamentedId.toString().padStart(5, "0");
 
-  increamentedIdString = `M-${increamentedIdString}`;
+  increamentedIdString = `A-${increamentedIdString}`;
 
   return increamentedIdString;
 };
