@@ -6,18 +6,39 @@ const heroSchema = new Schema<IHero, HeroModel>(
     titleOne: {
       type: String,
       required: true,
-      maxlength: 80,
     },
     titleTwo: {
       type: String,
       required: true,
-      maxlength: 80,
+    },
+    titleThree: {
+      type: String,
+      required: true,
+    },
+    titleFour: {
+      type: String,
+      required: true,
     },
     email: {
       type: String,
     },
-
+    infoEmail: {
+      type: String,
+      required: true,
+    },
+    infoNumber: {
+      type: String,
+      required: true,
+    },
     imgLink: {
+      type: String,
+      required: true,
+    },
+    employee: {
+      type: String,
+      required: true,
+    },
+    branch: {
       type: String,
       required: true,
     },
