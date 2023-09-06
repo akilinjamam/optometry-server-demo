@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
-import app from "./app";
-import configuration from "./configuration/index";
+import app from "./src/app";
+import configuration from "./src/configuration/index";
 
 const serverConntection = async () => {
   try {
