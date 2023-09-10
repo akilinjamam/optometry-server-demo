@@ -15,6 +15,7 @@ import { heroRouter } from "../modules/hero/hero.route";
 import { publicationRouter } from "../modules/publication/publication.route";
 import { founderRouter } from "../modules/founder/founder.router";
 import { committeeRouter } from "../modules/committee/committee.route";
+import { offlinePaymentRouter } from "../modules/offlinePayment/offlinePayment.router";
 const router = express.Router();
 
 const moduleRouter = [
@@ -61,6 +62,10 @@ const moduleRouter = [
   {
     path: "/payment",
     route: paymentRoute,
+  },
+  {
+    path: "/offline-payment",
+    route: offlinePaymentRouter,
   },
   {
     path: "/work",
