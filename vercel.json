@@ -1,6 +1,6 @@
 {
     "version": 2,
-    "name": "optometrist-server",
+    "name": "optometrist-demo-server",
     "builds": [
        { "src": "server.ts", "use": "@vercel/node" }
     ],
